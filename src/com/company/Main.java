@@ -59,9 +59,9 @@ public class Main {
         Graph graph = new SingleGraph("Trial 1");
         graph.addAttribute("ui.stylesheet", "graph { size: 100px, 400px;}");
 
-        InputReader input = new InputReader("C:\\Users\\Varun\\Desktop\\IdeaProjects\\TextWordAnalyzer\\sonnets words.txt");
+        InputReader input = new InputReader("");
         ArrayList<WordNode> dataNodes = input.getNodes();
-        input = new InputReader("C:\\Users\\Varun\\Desktop\\IdeaProjects\\TextWordAnalyzer\\sonnets connections.txt");
+        input = new InputReader("");
         ArrayList<ConnectionNode> connections = ConnectionNode.GenerateConnectionNodes(input.getNodes());
 
         graph.addAttribute("ui.stylesheet", "node { text-size:24;}");
@@ -70,7 +70,7 @@ public class Main {
             graph.getNode(i).addAttribute("ui.style", " size:" + (dataNodes.get(i).size < 100 ? dataNodes.get(i).size : 100) + "px;" +
                     "fill-color: grey;");
             graph.getNode(i).addAttribute("ui.label", dataNodes.get(i).text);
-            //graph.getNode(i).addAttribute("layout.weight", 1);
+            graph.getNode(i).addAttribute("layout.weight", 0.2);
             System.out.println("Size: " + dataNodes.get(i).size);
         }
 
@@ -82,7 +82,7 @@ public class Main {
             for(String s : l2){
                 try{
                     graph.addEdge(Integer.toString(edgeCount), graph.getNode(dataNodes.get(i).text), graph.getNode(s));
-                   graph.getEdge(edgeCount).setAttribute("layout.weight", 0.4);
+                   //graph.getEdge(edgeCount).setAttribute("layout.weight", 0.1);
                     edgeCount++;
                 } catch(IdAlreadyInUseException e){
                     //e.printStackTrace();
